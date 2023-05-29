@@ -15,12 +15,12 @@ export async function getCidade(req, res) {
 
 export async function getPassagens(req, res) {
     try{
-        const getCitys = await db.query(`
+        const getPassagens = await db.query(`
             SELECT *
                 FROM passagens;
         `);
-    if(getCitys.rows[0] === undefined) return res.sendStatus(404);
-        res.status(200).send(getCitys.rows);
+    if(getPassagens.rows[0] === undefined) return res.sendStatus(404);
+        res.status(200).send(getPassagens.rows);
     } catch (erro){
         res.send(erro.message)
     }
@@ -29,12 +29,12 @@ export async function getPassagens(req, res) {
 export async function getPassagensCity(req, res) {
     const {id} = req.params;
     try{
-        const getCityId = await db.query(`
+        const getPassagemId = await db.query(`
             SELECT *
                 FROM passagens WHERE cidades_id = $1;
         `, [id]);
-    if(getCityId.rows[0] === undefined) return res.sendStatus(404);
-        res.status(200).send(getCityId.rows);
+    if(getPassagemId.rows[0] === undefined) return res.sendStatus(404);
+        res.status(200).send(getPassagemId.rows);
     } catch (erro){
         res.send(erro.message)
     }
