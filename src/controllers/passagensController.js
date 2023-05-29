@@ -31,7 +31,7 @@ export async function getPassagensCity(req, res) {
     try{
         const getPassagemId = await db.query(`
             SELECT *
-                FROM passagens WHERE id = $1;
+                FROM passagens WHERE cidades_id = $1;
         `, [id]);
     if(getPassagemId.rows[0] === undefined) return res.sendStatus(404);
         res.status(200).send(getPassagemId.rows);
