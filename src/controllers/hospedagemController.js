@@ -5,7 +5,7 @@ export async function getHospedagemId(req, res) {
     try{
         const getCityId = await db.query(`
             SELECT *
-                FROM hospedagens WHERE id = $1;
+                FROM hospedagens WHERE cidades_id = $1;
         `, [id]);
     if(getCityId.rows[0] === undefined) return res.sendStatus(404);
         res.status(200).send(getCityId.rows);
